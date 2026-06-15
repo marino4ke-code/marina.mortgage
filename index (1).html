@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marina Tsydendambaeva — MortgageDepot | NJ</title>
+  <meta name="description" content="Лицензированный ипотечный брокер MortgageDepot. Помогаю русскоязычным получить ипотеку в США." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>emailjs.init("e_6pO45yHLhya6wZd");</script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #CC2027;
+      --red-dark: #A8181E;
+      --dark: #1A1A1A;
+      --mid: #555;
+      --light: #F7F7F7;
+      --white: #FFFFFF;
+      --border: #E8E8E8;
+      --radius: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); line-height: 1.5; }
+
+    /* NAV */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-md { background: var(--red); color: white; font-weight: 800; font-size: 13px; padding: 6px 10px; border-radius: 5px; }
+    .nav-logo-text { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+    .nav-logo-text span { display: block; font-size: 11px; font-weight: 400; color: #999; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .lang-switcher { display: flex; border: 1.5px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .lang-btn {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: none;
+      background: transparent;
+      color: var(--mid);
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.05em;
+    }
+    .lang-btn.active { background: var(--dark); color: white; }
+    .lang-btn:hover:not(.active) { background: var(--light); }
+    .nav-cta { background: var(--red); color: white; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 6px; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--red-dark); }
+
+    /* HERO */
+    .hero { display: grid; grid-template-columns: 1fr 280px; min-height: auto; background: var(--light); margin-bottom: 0; align-items: center; }
+    .hero-photo { overflow: hidden; background: var(--light); }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 12px 40px 12px 44px; }
+    .hero-tag { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+    .hero-name { font-size: clamp(28px, 3vw, 42px); font-weight: 700; color: var(--dark); line-height: 1.1; margin-bottom: 6px; }
+    .hero-role { font-size: 17px; font-weight: 400; color: var(--mid); margin-bottom: 10px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+    .pill { font-size: 14px; font-weight: 500; padding: 6px 15px; border-radius: 20px; border: 1.5px solid var(--border); color: var(--mid); background: var(--white); }
+    .pill.red { background: rgba(204,32,39,0.06); border-color: rgba(204,32,39,0.25); color: var(--red); font-weight: 600; }
+    .hero-btn { background: var(--red); color: white; font-size: 14px; font-weight: 600; padding: 13px 30px; border-radius: 6px; text-decoration: none; display: inline-block; align-self: flex-start; transition: background 0.2s, transform 0.15s; }
+    .hero-btn:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .hero-contact { margin-top: 10px; display: flex; flex-direction: column; gap: 5px; }
+    .contact-item { font-size: 13px; color: var(--mid); }
+    .contact-item a { color: var(--dark); text-decoration: none; font-weight: 500; }
+    .contact-item a:hover { color: var(--red); }
+    .contact-item strong { color: #bbb; font-weight: 500; margin-right: 4px; }
+    .hero-right { position: relative; overflow: hidden; background: var(--light); }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .hero-accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--red); z-index: 2; }
+    .hero-photo { display: flex; align-items: center; justify-content: center; padding: 16px 24px 16px 0; }
+    .hero-photo img { width: 220px; height: 260px; object-fit: cover; object-position: center top; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.12); border: 3px solid var(--white); }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--dark); padding: 20px 40px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 22px; font-weight: 700; color: var(--red); display: block; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* SECTIONS */
+    section { padding: 48px 20px; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .sec-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; text-align: center; }
+    .sec-title { font-size: clamp(22px, 2.2vw, 30px); font-weight: 700; color: var(--dark); text-align: center; margin-bottom: 28px; }
+
+    /* SERVICES */
+    .services { background: var(--light); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .service-card { background: var(--white); border-radius: var(--radius); padding: 24px 22px; border: 1.5px solid var(--border); transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .service-card:hover { border-color: var(--red); box-shadow: 0 6px 24px rgba(204,32,39,0.08); transform: translateY(-2px); }
+    .service-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+    .service-name { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .service-desc { font-size: 13px; color: var(--mid); line-height: 1.6; }
+
+    /* FREEBIES */
+    .freebies { background: var(--white); }
+    .freebies-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .freebie-card { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 22px; cursor: pointer; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
+    .freebie-card:hover { border-color: var(--red); box-shadow: 0 6px 24px rgba(204,32,39,0.08); transform: translateY(-2px); }
+    .freebie-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--red); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-bottom: 12px; }
+    .freebie-icon { font-size: 24px; display: block; margin-bottom: 6px; }
+    .freebie-name { font-size: 14px; font-weight: 600; color: var(--dark); margin-bottom: 5px; line-height: 1.35; }
+    .freebie-hint { font-size: 12px; color: #aaa; margin-bottom: 14px; }
+    .freebie-link { font-size: 13px; font-weight: 600; color: var(--red); }
+
+    /* CALCULATORS */
+    .calculators { background: var(--light); }
+    .calc-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center; }
+    .calc-tab { font-size: 13px; font-weight: 500; padding: 8px 20px; border-radius: 6px; border: 1.5px solid var(--border); background: var(--white); color: var(--mid); cursor: pointer; transition: all 0.2s; }
+    .calc-tab.active { background: var(--red); border-color: var(--red); color: white; font-weight: 600; }
+    .calc-tab:hover:not(.active) { border-color: var(--red); color: var(--red); }
+    .calc-panel { display: none; }
+    .calc-panel.active { display: block; }
+    .calc-box { background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    .calc-inputs { display: flex; flex-direction: column; gap: 14px; }
+    .input-group label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; display: block; margin-bottom: 6px; }
+    .input-group input { width: 100%; background: var(--light); border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 13px; font-size: 14px; color: var(--dark); font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+    .input-group input:focus { border-color: var(--red); background: white; }
+    .calc-btn { width: 100%; background: var(--red); color: white; font-size: 14px; font-weight: 600; padding: 12px; border-radius: 7px; border: none; cursor: pointer; transition: background 0.2s; margin-top: 4px; }
+    .calc-btn:hover { background: var(--red-dark); }
+    .calc-result { background: var(--light); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px; min-height: 180px; display: flex; flex-direction: column; justify-content: center; }
+    .result-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #aaa; margin-bottom: 5px; }
+    .result-value { font-size: 38px; font-weight: 700; color: var(--red); margin-bottom: 3px; }
+    .result-sub { font-size: 12px; color: #aaa; margin-bottom: 16px; }
+    .result-breakdown { display: flex; flex-direction: column; gap: 7px; }
+    .result-row { display: flex; justify-content: space-between; font-size: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+    .result-row span:first-child { color: #aaa; }
+    .result-row span:last-child { color: var(--dark); font-weight: 500; }
+    .result-placeholder { text-align: center; color: #ccc; font-size: 13px; }
+
+    /* CTA */
+    .cta-section { background: var(--dark); padding: 48px 20px; text-align: center; }
+    .cta-section h2 { font-size: clamp(22px,2.5vw,32px); font-weight: 700; color: white; margin-bottom: 8px; }
+    .cta-section p { font-size: 15px; color: rgba(255,255,255,0.55); margin-bottom: 28px; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-red { background: var(--red); color: white; font-size: 14px; font-weight: 700; padding: 13px 30px; border-radius: 6px; text-decoration: none; transition: background 0.2s, transform 0.15s; display: inline-block; }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: white; font-size: 14px; font-weight: 500; padding: 13px 30px; border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.2); text-decoration: none; transition: border-color 0.2s, background 0.2s; display: inline-block; }
+    .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.06); }
+
+    /* FOOTER */
+    footer { background: var(--white); border-top: 1px solid var(--border); padding: 28px 20px; }
+    .footer-inner { max-width: 1060px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-info { font-size: 13px; color: var(--mid); line-height: 1.8; }
+    .footer-info strong { color: var(--dark); }
+    .footer-links { display: flex; flex-direction: column; gap: 7px; }
+    .footer-links a { font-size: 13px; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--red); }
+    .footer-disclaimer { max-width: 1060px; margin: 16px auto 0; font-size: 10px; color: #bbb; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 14px; }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: white; border-radius: var(--radius); padding: 32px; max-width: 420px; width: 100%; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+    .modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; font-size: 18px; cursor: pointer; color: #aaa; }
+    .modal-title { font-size: 19px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+    .modal-sub { font-size: 13px; color: var(--mid); margin-bottom: 22px; line-height: 1.6; }
+    .modal-form { display: flex; flex-direction: column; gap: 11px; }
+    .modal-form input { width: 100%; border: 1.5px solid var(--border); border-radius: 7px; padding: 10px 13px; font-size: 13px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; color: var(--dark); }
+    .modal-form input:focus { border-color: var(--red); }
+    .modal-note { font-size: 11px; color: #bbb; text-align: center; }
+
+
+    /* LEAD FORM */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 680px;
+      margin: 32px auto 0;
+      text-align: left;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
+    }
+    .form-group input,
+    .form-group select {
+      background: rgba(255,255,255,0.08);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      border-radius: 7px;
+      padding: 11px 14px;
+      font-size: 14px;
+      color: white;
+      font-family: Inter, sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--red); }
+    .form-group select option { background: var(--dark); color: white; }
+    .form-submit {
+      display: block;
+      margin: 24px auto 0;
+      background: var(--red);
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 48px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .form-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-top: 12px;
+    }
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* ABOUT SECTION */
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { display: none; }
+      .hero-photo { height: 60vw; order: -1; }
+      .hero-left { padding: 24px 20px 32px; }
+      .services-grid, .freebies-grid { grid-template-columns: 1fr; }
+      .calc-box { grid-template-columns: 1fr; }
+      .stats-bar { gap: 24px; padding: 18px 20px; }
+      nav { padding: 10px 16px; }
+      .nav-logo-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-md">MD</div>
+    <div class="nav-logo-text">
+      Marina Tsydendambaeva
+      <span>MortgageDepot · NMLS# 2691771</span>
+    </div>
+  </div>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('ru')">RU</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#consult" class="nav-cta" data-ru="Консультация →" data-en="Free Consult →">Консультация →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag" data-ru="Licensed Mortgage Loan Originator" data-en="Licensed Mortgage Loan Originator">Licensed Mortgage Loan Originator</p>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:10px">
+      <h1 class="hero-name" style="margin-bottom:0">Marina<br>Tsydendambaeva</h1>
+      <a href="#consult" class="hero-btn" data-ru="Бесплатная консультация" data-en="Free Consultation">Бесплатная консультация</a>
+    </div>
+    <p class="hero-role" data-ru="От первого дома до инвестиционного портфеля" data-en="From your first home to your investment portfolio">От первого дома до инвестиционного портфеля</p>
+    <div class="hero-pills">
+      <span class="pill red" data-ru="Самозанятые" data-en="Self-Employed">Самозанятые</span>
+      <span class="pill red" data-ru="Первый дом" data-en="First Home">Первый дом</span>
+      <span class="pill red" data-ru="Инвесторы" data-en="Investors">Инвесторы</span>
+      <span class="pill">Fix & Flip</span>
+      <span class="pill">DSCR</span>
+      <span class="pill">FHA</span>
+    </div>
+    <div class="hero-contact">
+      <div class="contact-item"><strong>CELL</strong> <a href="tel:6467970052">646-797-0052</a></div>
+      <div class="contact-item"><strong>NMLS#</strong> 2691771</div>
+      <div class="contact-item"><strong>EMAIL</strong> <a href="mailto:Marina@MortgageDepot.com">Marina@MortgageDepot.com</a></div>
+      <div class="contact-item"><strong>IG</strong> <a href="https://instagram.com/marina.mortgage" target="_blank">@marina.mortgage</a></div>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="images/marina.png" alt="Marina Tsydendambaeva" />
+  </div>
+</section>
+
+<div style="height:3px;background:var(--red);width:100%"></div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <p class="sec-label" data-ru="Программы" data-en="Programs">Программы</p>
+    <h2 class="sec-title" data-ru="Чем могу помочь" data-en="How I Can Help">Чем могу помочь</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">🏠</span>
+        <div class="service-name" data-ru="Первый дом" data-en="First Home">Первый дом</div>
+        <div class="service-desc" data-ru="FHA и Conventional. Down payment от 3.5%. Объясню каждый шаг на русском." data-en="FHA and Conventional loans. Down payment from 3.5%. I'll guide you through every step.">FHA и Conventional. Down payment от 3.5%. Объясню каждый шаг на русском.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💼</span>
+        <div class="service-name" data-ru="Самозанятые" data-en="Self-Employed">Самозанятые</div>
+        <div class="service-desc" data-ru="Bank Statement Loan — без W2 и tax return. Только выписки со счёта за 12–24 месяца." data-en="Bank Statement Loan — no W2 or tax return needed. Just 12–24 months of bank statements.">Bank Statement Loan — без W2 и tax return. Только выписки со счёта за 12–24 месяца.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📈</span>
+        <div class="service-name" data-ru="Инвестиции" data-en="Investment Properties">Инвестиции</div>
+        <div class="service-desc" data-ru="Fix & Flip, DSCR, Bridge loan. Кредиты под инвестиционную недвижимость." data-en="Fix & Flip, DSCR, Bridge loans. Financing solutions for investment real estate.">Fix & Flip, DSCR, Bridge loan. Кредиты под инвестиционную недвижимость.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔄</span>
+        <div class="service-name" data-ru="Рефинансирование" data-en="Refinancing">Рефинансирование</div>
+        <div class="service-desc" data-ru="Снизь ставку, уменьши платёж или получи кэш из equity своего дома." data-en="Lower your rate, reduce your payment, or get cash from your home equity.">Снизь ставку, уменьши платёж или получи кэш из equity своего дома.</div>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏦</span>
+        <div class="service-name" data-ru="HELOC" data-en="HELOC">HELOC</div>
+        <div class="service-desc" data-ru="Home Equity Line of Credit — используй equity своего дома для ремонта, бизнеса или инвестиций." data-en="Home Equity Line of Credit — use your home equity for renovations, business, or investments.">Home Equity Line of Credit — используй equity своего дома для ремонта, бизнеса или инвестиций.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREEBIES -->
+<section class="freebies" id="guides">
+  <div class="container">
+    <p class="sec-label" data-ru="Бесплатно" data-en="Free Resources">Бесплатно</p>
+    <h2 class="sec-title" data-ru="Скачайте гайды" data-en="Download Free Guides">Скачайте гайды</h2>
+    <div class="freebies-grid">
+      <div class="freebie-card" onclick="openModal('guide1')">
+        <span class="freebie-icon">📋</span>
+        <span class="freebie-badge">PDF</span>
+        <div class="freebie-name" data-ru="Ипотека в США с нуля" data-en="Getting a Mortgage in the US">Ипотека в США с нуля</div>
+        <div class="freebie-hint" data-ru="Для тех кто только начинает" data-en="For first-time buyers">Для тех кто только начинает</div>
+        <div class="freebie-link" data-ru="Скачать бесплатно →" data-en="Download free →">Скачать бесплатно →</div>
+      </div>
+      <div class="freebie-card" onclick="openModal('guide2')">
+        <span class="freebie-icon">💼</span>
+        <span class="freebie-badge">PDF</span>
+        <div class="freebie-name" data-ru="Кредит без W2" data-en="Get a Loan Without W2">Кредит без W2</div>
+        <div class="freebie-hint" data-ru="Для самозанятых и владельцев бизнеса" data-en="For self-employed & business owners">Для самозанятых и владельцев бизнеса</div>
+        <div class="freebie-link" data-ru="Скачать бесплатно →" data-en="Download free →">Скачать бесплатно →</div>
+      </div>
+      <div class="freebie-card" onclick="openModal('guide3')">
+        <span class="freebie-icon">✅</span>
+        <span class="freebie-badge" data-ru="Чек-лист" data-en="Checklist">Чек-лист</span>
+        <div class="freebie-name" data-ru="10 вопросов перед покупкой дома" data-en="10 Questions Before Buying a Home">10 вопросов перед покупкой дома</div>
+        <div class="freebie-hint" data-ru="Не теряй деньги на первой сделке" data-en="Don't lose money on your first deal">Не теряй деньги на первой сделке</div>
+        <div class="freebie-link" data-ru="Скачать бесплатно →" data-en="Download free →">Скачать бесплатно →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATORS -->
+<section class="calculators" id="calculators">
+  <div class="container">
+    <p class="sec-label" data-ru="Инструменты" data-en="Tools">Инструменты</p>
+    <h2 class="sec-title" data-ru="Калькуляторы" data-en="Calculators">Калькуляторы</h2>
+    <div class="calc-tabs">
+      <button class="calc-tab active" onclick="switchCalc(event,'mortgage')" data-ru="Ипотека" data-en="Mortgage">Ипотека</button>
+      <button class="calc-tab" onclick="switchCalc(event,'flip')" data-ru="Fix & Flip" data-en="Fix & Flip">Fix & Flip</button>
+      <button class="calc-tab" onclick="switchCalc(event,'dscr')" data-ru="DSCR" data-en="DSCR">DSCR</button>
+    </div>
+
+    <div class="calc-panel active" id="calc-mortgage">
+      <div class="calc-box">
+        <div class="calc-inputs">
+          <div class="input-group"><label data-ru="Цена дома ($)" data-en="Home Price ($)">Цена дома ($)</label><input type="number" id="m-price" placeholder="400000" /></div>
+          <div class="input-group"><label data-ru="Первый взнос (%)" data-en="Down Payment (%)">Первый взнос (%)</label><input type="number" id="m-down" placeholder="20" /></div>
+          <div class="input-group"><label data-ru="Ставка (%)" data-en="Interest Rate (%)">Ставка (%)</label><input type="number" id="m-rate" placeholder="7.5" step="0.1" /></div>
+          <div class="input-group"><label data-ru="Срок (лет)" data-en="Loan Term (years)">Срок (лет)</label><input type="number" id="m-years" placeholder="30" /></div>
+          <button class="calc-btn" onclick="calcMortgage()" data-ru="Рассчитать" data-en="Calculate">Рассчитать</button>
+        </div>
+        <div class="calc-result" id="result-mortgage"><div class="result-placeholder" data-ru="Введите данные →" data-en="Enter details →">Введите данные →</div></div>
+      </div>
+    </div>
+
+    <div class="calc-panel" id="calc-flip">
+      <div class="calc-box">
+        <div class="calc-inputs">
+          <div class="input-group"><label data-ru="Цена покупки ($)" data-en="Purchase Price ($)">Цена покупки ($)</label><input type="number" id="f-buy" placeholder="200000" /></div>
+          <div class="input-group"><label data-ru="Ремонт ($)" data-en="Repair Cost ($)">Ремонт ($)</label><input type="number" id="f-repair" placeholder="50000" /></div>
+          <div class="input-group"><label data-ru="Цена продажи — ARV ($)" data-en="Sale Price — ARV ($)">Цена продажи — ARV ($)</label><input type="number" id="f-arv" placeholder="320000" /></div>
+          <div class="input-group"><label data-ru="Расходы / Closing ($)" data-en="Costs / Closing ($)">Расходы / Closing ($)</label><input type="number" id="f-costs" placeholder="15000" /></div>
+          <button class="calc-btn" onclick="calcFlip()" data-ru="Считать прибыль" data-en="Calculate Profit">Считать прибыль</button>
+        </div>
+        <div class="calc-result" id="result-flip"><div class="result-placeholder" data-ru="Введите данные →" data-en="Enter details →">Введите данные →</div></div>
+      </div>
+    </div>
+
+    <div class="calc-panel" id="calc-dscr">
+      <div class="calc-box">
+        <div class="calc-inputs">
+          <div class="input-group"><label data-ru="Аренда в месяц ($)" data-en="Monthly Rent ($)">Аренда в месяц ($)</label><input type="number" id="d-rent" placeholder="2500" /></div>
+          <div class="input-group"><label data-ru="Цена покупки ($)" data-en="Purchase Price ($)">Цена покупки ($)</label><input type="number" id="d-price" placeholder="400000" /></div>
+          <div class="input-group"><label data-ru="Down Payment (%)" data-en="Down Payment (%)">Down Payment (%)</label><input type="number" id="d-down" placeholder="25" /></div>
+          <div class="input-group"><label data-ru="Ставка (%)" data-en="Interest Rate (%)">Ставка (%)</label><input type="number" id="d-rate" placeholder="8.0" step="0.1" /></div>
+          <div class="input-group"><label data-ru="Срок (лет)" data-en="Loan Term (years)">Срок (лет)</label><input type="number" id="d-years" placeholder="30" /></div>
+          <button class="calc-btn" onclick="calcDSCR()" data-ru="Проверить DSCR" data-en="Check DSCR">Проверить DSCR</button>
+        </div>
+        <div class="calc-result" id="result-dscr"><div class="result-placeholder" data-ru="Введите данные →" data-en="Enter details →">Введите данные →</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="consult">
+  <div class="container">
+    <h2 data-ru="Готовы начать?" data-en="Ready to Get Started?">Готовы начать?</h2>
+    <p data-ru="Заполните анкету — свяжусь в течение 24 часов" data-en="Fill out the form — I will get back to you within 24 hours">Заполните анкету — свяжусь в течение 24 часов</p>
+
+    <form action="https://formspree.io/f/xbdeplbz" method="POST" id="lead-form">
+      <div class="form-grid">
+        <div class="form-group">
+          <label data-ru="Ваше имя *" data-en="Your Name *">Ваше имя *</label>
+          <input type="text" name="name" required placeholder="Marina" />
+        </div>
+        <div class="form-group">
+          <label data-ru="Телефон * (+1 и 10 цифр)" data-en="Phone * (+1 and 10 digits)">Телефон * (+1 и 10 цифр)</label>
+          <input type="tel" name="phone" id="lead-phone" required placeholder="+1 (646) 000-0000" />
+        </div>
+        <div class="form-group">
+          <label data-ru="Email *" data-en="Email *">Email *</label>
+          <input type="email" name="email" required placeholder="email@example.com" />
+        </div>
+        <div class="form-group">
+          <label data-ru="Что вас интересует? *" data-en="What are you looking for? *">Что вас интересует? *</label>
+          <select name="interest" required>
+            <option value="">Выберите... / Select...</option>
+            <option value="first-home" data-ru="Купить первый дом" data-en="Buy first home">Купить первый дом</option>
+            <option value="investment" data-ru="Инвестиционная недвижимость" data-en="Investment property">Инвестиционная недвижимость</option>
+            <option value="refinance" data-ru="Рефинансирование" data-en="Refinance">Рефинансирование</option>
+            <option value="heloc" data-ru="HELOC" data-en="HELOC">HELOC</option>
+            <option value="explore" data-ru="Просто изучаю варианты" data-en="Just exploring">Просто изучаю варианты</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-ru="Когда планируете? *" data-en="When are you planning? *">Когда планируете? *</label>
+          <select name="timeline" required>
+            <option value="">Выберите... / Select...</option>
+            <option value="3-6months" data-ru="В ближайшие 3-6 месяцев" data-en="In the next 3-6 months">В ближайшие 3-6 месяцев</option>
+            <option value="1year" data-ru="В течение года" data-en="Within a year">В течение года</option>
+            <option value="exploring" data-ru="Просто изучаю" data-en="Just exploring">Просто изучаю</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-ru="Статус дохода *" data-en="Employment Status *">Статус дохода *</label>
+          <select name="employment" required>
+            <option value="">Выберите... / Select...</option>
+            <option value="w2" data-ru="W2 (наёмный работник)" data-en="W2 (employed)">W2 (наёмный работник)</option>
+            <option value="self" data-ru="Самозанятый / бизнес" data-en="Self-employed / business">Самозанятый / бизнес</option>
+            <option value="both" data-ru="И то и другое" data-en="Both">И то и другое</option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="form-submit" data-ru="Отправить заявку →" data-en="Submit →">Отправить заявку →</button>
+      <p class="form-note" data-ru="Марина свяжется с вами в течение 24 часов. Никакого спама." data-en="Marina will contact you within 24 hours. No spam.">Марина свяжется с вами в течение 24 часов. Никакого спама.</p>
+    </form>
+
+    <div id="form-success" style="display:none;text-align:center;padding:40px 20px">
+      <div style="font-size:48px;margin-bottom:16px">✅</div>
+      <div style="font-size:22px;font-weight:700;color:white;margin-bottom:10px" data-ru="Спасибо! Скоро свяжусь с вами." data-en="Thank you! I will be in touch soon.">Спасибо! Скоро свяжусь с вами.</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.6)" data-ru="Обычно отвечаю в течение 24 часов." data-en="I usually respond within 24 hours.">Обычно отвечаю в течение 24 часов.</div>
+    </div>
+
+    <div class="cta-btns" style="margin-top:32px">
+      <a href="tel:6467970052" class="btn-red">📞 646-797-0052</a>
+      <a href="https://instagram.com/marina.mortgage" target="_blank" class="btn-ghost">Instagram →</a>
+      <a href="mailto:Marina@MortgageDepot.com" class="btn-ghost">Email →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-info">
+      <strong>Marina Tsydendambaeva</strong> · MLO · NMLS# 2691771<br>
+      MortgageDepot · 179 West End Ave, Suite 201, Brooklyn, NY 11235<br>
+      Cell: 646-797-0052 · Office: 718-540-5245 ext. 2129<br>
+      <a href="mailto:Marina@MortgageDepot.com" style="color:var(--red);text-decoration:none">Marina@MortgageDepot.com</a>
+    </div>
+    <div class="footer-links">
+      <a href="#guides" data-ru="Гайды" data-en="Guides">Гайды</a>
+      <a href="#calculators" data-ru="Калькуляторы" data-en="Calculators">Калькуляторы</a>
+      <a href="#consult" data-ru="Консультация" data-en="Consultation">Консультация</a>
+      <a href="https://instagram.com/marina.mortgage" target="_blank">Instagram</a>
+      <a href="https://mortgagedepot.com" target="_blank">MortgageDepot.com</a>
+    </div>
+  </div>
+  <div class="footer-disclaimer" data-ru="Marina Tsydendambaeva | Лицензированный Mortgage Loan Originator | MortgageDepot | NMLS# 2691771 | 179 West End Ave, Suite 201, Brooklyn, NY 11235 | Информация носит образовательный характер и не является кредитным предложением. Equal Housing Lender." data-en="Marina Tsydendambaeva | Licensed Mortgage Loan Originator | MortgageDepot | NMLS# 2691771 | 179 West End Ave, Suite 201, Brooklyn, NY 11235 | Information provided is for educational purposes only and does not constitute a loan commitment or offer. Equal Housing Lender.">
+    Marina Tsydendambaeva | Лицензированный Mortgage Loan Originator | MortgageDepot | NMLS# 2691771 | 179 West End Ave, Suite 201, Brooklyn, NY 11235 | Информация носит образовательный характер и не является кредитным предложением. Equal Housing Lender.
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modal-title"></div>
+    <div class="modal-sub" id="modal-sub"></div>
+    <div class="modal-form">
+      <input type="text" id="modal-name" placeholder="Ваше имя / Your name *" required />
+      <input type="tel" id="modal-phone" placeholder="+1 (___) ___-____ *" required />
+      <input type="email" id="modal-email" placeholder="Email *" required />
+      <button class="calc-btn" onclick="submitModal()" data-ru="Получить бесплатно" data-en="Get for free">Получить бесплатно</button>
+      <p class="modal-note" data-ru="Все поля обязательны. Никакого спама." data-en="All fields required. No spam.">Все поля обязательны. Никакого спама.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentLang = 'ru';
+
+  const guides = {
+    ru: {
+      guide1: { title: 'Ипотека в США с нуля', sub: 'Пришлю PDF пошаговый гайд для тех кто только начинает.' },
+      guide2: { title: 'Кредит без W2', sub: 'Пришлю PDF с требованиями по Bank Statement Loan и DSCR.' },
+      guide3: { title: '10 вопросов перед покупкой', sub: 'Пришлю чек-лист который поможет не потерять деньги на первой сделке.' }
+    },
+    en: {
+      guide1: { title: 'Getting a Mortgage in the US', sub: "I'll send you a step-by-step PDF guide for first-time buyers." },
+      guide2: { title: 'Get a Loan Without W2', sub: "I'll send you a PDF with Bank Statement Loan and DSCR requirements." },
+      guide3: { title: '10 Questions Before Buying', sub: "I'll send you a checklist to help you avoid costly mistakes on your first deal." }
+    }
+  };
+
+  const guideLinks = {
+    guide1: 'https://marino4ke-code.github.io/marina.mortgage/guides/guide1.pdf',
+    guide2: 'https://marino4ke-code.github.io/marina.mortgage/guides/guide2.pdf',
+    guide3: 'https://marino4ke-code.github.io/marina.mortgage/guides/guide3.pdf'
+  };
+
+  let currentGuideId = 'guide1';
+
+  const calcLabels = {
+    ru: {
+      monthlyPayment: 'Ежемесячный платёж', years: 'лет', downPayment: 'Первый взнос',
+      loanAmount: 'Сумма кредита', totalPayments: 'Всего выплат', overpayment: 'Переплата',
+      profit: 'Прибыль', loss: 'Убыток', totalInvested: 'Всего вложено',
+      salePrice: 'ARV (продажа)', repairs: 'Ремонт', costs: 'Расходы',
+      dscrLabel: 'Коэффициент DSCR', great: '✅ Отличный показатель',
+      min: '⚠️ Минимально одобрят', bad: '❌ Аренда не покрывает платёж',
+      rent: 'Аренда', payment: 'Платёж по кредиту', diff: 'Разница', needed: 'Нужно'
+    },
+    en: {
+      monthlyPayment: 'Monthly Payment', years: 'years', downPayment: 'Down Payment',
+      loanAmount: 'Loan Amount', totalPayments: 'Total Payments', overpayment: 'Total Interest',
+      profit: 'Profit', loss: 'Loss', totalInvested: 'Total Invested',
+      salePrice: 'ARV (Sale Price)', repairs: 'Repairs', costs: 'Costs',
+      dscrLabel: 'DSCR Ratio', great: '✅ Great ratio',
+      min: '⚠️ Borderline approval', bad: '❌ Rent does not cover payment',
+      rent: 'Monthly Rent', payment: 'Loan Payment', diff: 'Difference', needed: 'Required'
+    }
+  };
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+    document.querySelectorAll('[data-ru]').forEach(el => {
+      el.textContent = el.getAttribute(`data-${lang}`);
+    });
+    document.querySelectorAll('[data-ru-ph]').forEach(el => {
+      el.placeholder = el.getAttribute(`data-${lang}-ph`);
+    });
+    document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+  }
+
+  function switchCalc(e, name) {
+    document.querySelectorAll('.calc-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('calc-' + name).classList.add('active');
+  }
+
+  function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+  const L = () => calcLabels[currentLang];
+
+  function calcMortgage() {
+    const price = parseFloat(document.getElementById('m-price').value) || 0;
+    const down = parseFloat(document.getElementById('m-down').value) || 20;
+    const rate = parseFloat(document.getElementById('m-rate').value) || 7.5;
+    const years = parseFloat(document.getElementById('m-years').value) || 30;
+    const principal = price * (1 - down / 100);
+    const r = rate / 100 / 12; const n = years * 12;
+    const pmt = principal * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+    const disc = currentLang==='ru'
+      ? '* Расчёты предварительные и носят ознакомительный характер. Для более точного расчёта — свяжитесь со мной.'
+      : '* Calculations are preliminary and for informational purposes only. For a more accurate quote — contact me.';
+    document.getElementById('result-mortgage').innerHTML = `
+      <div class="result-label">${L().monthlyPayment}</div>
+      <div class="result-value">$${fmt(pmt)}</div>
+      <div class="result-sub">${currentLang==='ru'?`на ${years} ${L().years}`:`for ${years} ${L().years}`}</div>
+      <div class="result-breakdown">
+        <div class="result-row"><span>${L().downPayment}</span><span>$${fmt(price*down/100)}</span></div>
+        <div class="result-row"><span>${L().loanAmount}</span><span>$${fmt(principal)}</span></div>
+      </div>
+      <div style="font-size:10px;color:#aaa;margin-top:12px;line-height:1.5;border-top:1px solid var(--border);padding-top:10px">${disc}</div>`;
+  }
+
+  function calcFlip() {
+    const buy = parseFloat(document.getElementById('f-buy').value) || 0;
+    const repair = parseFloat(document.getElementById('f-repair').value) || 0;
+    const arv = parseFloat(document.getElementById('f-arv').value) || 0;
+    const costs = parseFloat(document.getElementById('f-costs').value) || 0;
+    const totalIn = buy + repair + costs;
+    const profit = arv - totalIn;
+    const roi = totalIn > 0 ? (profit / totalIn * 100) : 0;
+    const disc = currentLang==='ru'
+      ? '* Расчёты предварительные и носят ознакомительный характер. Для более точного расчёта — свяжитесь со мной.'
+      : '* Calculations are preliminary and for informational purposes only. For a more accurate quote — contact me.';
+    document.getElementById('result-flip').innerHTML = `
+      <div class="result-label">${profit >= 0 ? L().profit : L().loss}</div>
+      <div class="result-value" style="color:${profit>=0?'var(--red)':'#dc2626'}">$${fmt(Math.abs(profit))}</div>
+      <div class="result-sub">ROI: ${roi.toFixed(1)}%</div>
+      <div class="result-breakdown">
+        <div class="result-row"><span>${L().totalInvested}</span><span>$${fmt(totalIn)}</span></div>
+        <div class="result-row"><span>${L().salePrice}</span><span>$${fmt(arv)}</span></div>
+        <div class="result-row"><span>${L().repairs}</span><span>$${fmt(repair)}</span></div>
+        <div class="result-row"><span>${L().costs}</span><span>$${fmt(costs)}</span></div>
+      </div>
+      <div style="font-size:10px;color:#aaa;margin-top:12px;line-height:1.5;border-top:1px solid var(--border);padding-top:10px">${disc}</div>`;
+  }
+
+  function calcDSCR() {
+    const rent  = parseFloat(document.getElementById('d-rent').value)  || 0;
+    const price = parseFloat(document.getElementById('d-price').value) || 0;
+    const down  = parseFloat(document.getElementById('d-down').value)  || 25;
+    const rate  = parseFloat(document.getElementById('d-rate').value)  || 8;
+    const years = parseFloat(document.getElementById('d-years').value) || 30;
+    const loan = price * (1 - down / 100);
+    const downAmt = price * down / 100;
+    const r = rate / 100 / 12;
+    const n = years * 12;
+    const pmt = loan > 0 && r > 0 ? loan * r * Math.pow(1+r,n) / (Math.pow(1+r,n) - 1) : 0;
+    const dscr = pmt > 0 ? rent / pmt : 0;
+    const color = dscr >= 1.25 ? '#16a34a' : dscr >= 1.0 ? '#ca8a04' : '#dc2626';
+    const status = dscr >= 1.25 ? L().great : dscr >= 1.0 ? L().min : L().bad;
+    const disc = currentLang==='ru'
+      ? '* Расчёты предварительные и носят ознакомительный характер. Для более точного расчёта — свяжитесь со мной.'
+      : '* Calculations are preliminary and for informational purposes only. For a more accurate quote — contact me.';
+    document.getElementById('result-dscr').innerHTML = `
+      <div class="result-label">${L().dscrLabel}</div>
+      <div class="result-value" style="color:${color}">${dscr.toFixed(2)}</div>
+      <div class="result-sub">${status}</div>
+      <div class="result-breakdown">
+        <div class="result-row"><span>${L().rent}</span><span>$${fmt(rent)}</span></div>
+        <div class="result-row"><span>${currentLang==='ru'?'Сумма кредита':'Loan Amount'}</span><span>$${fmt(loan)}</span></div>
+        <div class="result-row"><span>Down Payment</span><span>$${fmt(downAmt)}</span></div>
+        <div class="result-row"><span>${L().payment}</span><span>$${fmt(pmt)}</span></div>
+        <div class="result-row"><span>${L().diff}</span><span style="color:${dscr>=1?'#16a34a':'#dc2626'}">$${fmt(rent-pmt)}</span></div>
+        <div class="result-row"><span>${L().needed}</span><span>DSCR ≥ 1.0</span></div>
+      </div>
+      <div style="font-size:10px;color:#aaa;margin-top:12px;line-height:1.5;border-top:1px solid var(--border);padding-top:10px">${disc}</div>`;
+  }
+
+  function openModal(id) {
+    currentGuideId = id;
+    const g = guides[currentLang][id];
+    document.getElementById('modal-title').textContent = g.title;
+    document.getElementById('modal-sub').textContent = g.sub;
+    document.getElementById('modal-overlay').classList.add('open');
+    // Attach phone formatter
+    setTimeout(function(){
+      const mp = document.getElementById('modal-phone');
+      if(mp){
+        mp.addEventListener('input', function(){ formatPhone(this); });
+        mp.addEventListener('focus', function(){ if(!this.value) this.value='+1 '; });
+      }
+    }, 100);
+  }
+
+  function resetModal() {
+    // will re-attach formatter after DOM update
+    setTimeout(function(){
+      const mp = document.getElementById('modal-phone');
+      if(mp){
+        mp.addEventListener('input', function(){ formatPhone(this); });
+        mp.addEventListener('focus', function(){ if(!this.value) this.value='+1 '; });
+      }
+    }, 100);
+    document.getElementById('modal-inner').innerHTML = `
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-sub" id="modal-sub"></div>
+      <div class="modal-form">
+        <input type="text" id="modal-name" placeholder="${currentLang==='ru'?'Ваше имя *':'Your name *'}" required />
+        <input type="tel" id="modal-phone" placeholder="+1 (___) ___-____ *" required />
+        <input type="email" id="modal-email" placeholder="Email *" required />
+        <button class="calc-btn" onclick="submitModal()">${currentLang==='ru'?'Получить бесплатно':'Get for free'}</button>
+        <p class="modal-note">${currentLang==='ru'?'Все поля обязательны. Никакого спама.':'All fields required. No spam.'}</p>
+      </div>`;
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    setTimeout(resetModal, 300);
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  async function submitModal() {
+    const name = document.getElementById('modal-name').value.trim();
+    const email = document.getElementById('modal-email').value.trim();
+    const phone = document.getElementById('modal-phone').value.trim();
+
+    if (!name) { alert(currentLang==='ru'?'Введите ваше имя':'Please enter your name'); return; }
+    if (!validatePhone(phone)) { alert(currentLang==='ru'?'Введите правильный номер: +1 и 10 цифр':'Please enter a valid phone: +1 and 10 digits'); return; }
+    if (!validateEmail(email)) { alert(currentLang==='ru'?'Введите правильный email':'Please enter a valid email'); return; }
+
+    const btn = document.querySelector('#modal-inner .calc-btn');
+    btn.textContent = currentLang==='ru' ? 'Отправляем...' : 'Sending...';
+    btn.disabled = true;
+
+    const guideName = guides[currentLang][currentGuideId].title;
+    const guideLink = guideLinks[currentGuideId];
+
+    try {
+      // Send notification to Marina
+      await emailjs.send('service_1gedwfo', 'template_xs8a5xl', {
+        guide_name: guideName,
+        user_name: name,
+        user_phone: phone,
+        user_email: email
+      });
+
+      // Send guide to client
+      await emailjs.send('service_1gedwfo', 'template_f9wj69v', {
+        guide_name: guideName,
+        guide_link: guideLink,
+        user_name: name,
+        user_email: email
+      });
+
+      // Show success
+      document.getElementById('modal-inner').innerHTML = `
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:44px;margin-bottom:16px">✅</div>
+          <div style="font-size:19px;font-weight:700;margin-bottom:10px">${currentLang==='ru'?`Спасибо, ${name}!`:`Thank you, ${name}!`}</div>
+          <div style="font-size:13px;color:#777;line-height:1.6">${currentLang==='ru'?`Гайд отправлен на <b>${email}</b>.<br>Проверьте папку Spam если не найдёте.`:`Guide sent to <b>${email}</b>.<br>Check your Spam folder if you don't see it.`}</div>
+          <button onclick="closeModal()" style="margin-top:22px;background:var(--red);color:white;border:none;padding:10px 24px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">${currentLang==='ru'?'Закрыть':'Close'}</button>
+        </div>`;
+    } catch(err) {
+      console.error('EmailJS error:', err);
+      btn.textContent = currentLang==='ru' ? 'Ошибка. Попробуйте снова.' : 'Error. Please try again.';
+      btn.disabled = false;
+    }
+  }
+
+  // PHONE FORMATTING
+  function formatPhone(input) {
+    let val = input.value.replace(/\D/g, '');
+    if (val.startsWith('1')) val = val.slice(1);
+    val = val.slice(0, 10);
+    let formatted = '+1';
+    if (val.length > 0) formatted += ' (' + val.slice(0, 3);
+    if (val.length >= 4) formatted += ') ' + val.slice(3, 6);
+    if (val.length >= 7) formatted += '-' + val.slice(6, 10);
+    input.value = formatted;
+  }
+
+  function validatePhone(val) {
+    const digits = val.replace(/\D/g, '');
+    return digits.length === 11 && digits.startsWith('1');
+  }
+
+  function validateEmail(val) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  }
+
+  // Attach phone formatter to lead form phone
+  const leadPhone = document.getElementById('lead-phone');
+  if (leadPhone) {
+    leadPhone.addEventListener('input', function() { formatPhone(this); });
+    leadPhone.addEventListener('focus', function() {
+      if (!this.value) this.value = '+1 ';
+    });
+  }
+
+  // Attach phone formatter to modal phone
+  document.addEventListener('click', function(e) {
+    const mp = document.getElementById('modal-phone');
+    if (mp) {
+      mp.addEventListener('input', function() { formatPhone(this); });
+      mp.addEventListener('focus', function() {
+        if (!this.value) this.value = '+1 ';
+      });
+    }
+  });
+
+  // FORM SUBMISSION
+  const form = document.getElementById('lead-form');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      const phone = document.getElementById('lead-phone').value;
+      const email = form.querySelector('input[type="email"]').value;
+      // Validate phone
+      if (!validatePhone(phone)) {
+        alert(currentLang==='ru' ? 'Введите правильный номер телефона: +1 и 10 цифр' : 'Please enter a valid phone number: +1 and 10 digits');
+        return;
+      }
+      // Validate email
+      if (!validateEmail(email)) {
+        alert(currentLang==='ru' ? 'Введите правильный email адрес' : 'Please enter a valid email address');
+        return;
+      }
+      // Check all selects
+      const selects = form.querySelectorAll('select[required]');
+      for (let s of selects) {
+        if (!s.value) {
+          alert(currentLang==='ru' ? 'Пожалуйста заполните все поля' : 'Please fill in all fields');
+          s.focus(); return;
+        }
+      }
+      btn.textContent = currentLang === 'ru' ? 'Отправляем...' : 'Sending...';
+      btn.disabled = true;
+      try {
+        const response = await fetch('https://formspree.io/f/xbdeplbz', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+        } else {
+          btn.textContent = currentLang === 'ru' ? 'Ошибка. Попробуйте снова.' : 'Error. Please try again.';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = currentLang === 'ru' ? 'Ошибка. Попробуйте снова.' : 'Error. Please try again.';
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
+</body>
+</html>
