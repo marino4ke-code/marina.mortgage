@@ -6,6 +6,8 @@
   <title>Marina Tsydendambaeva — MortgageDepot | NJ</title>
   <meta name="description" content="Лицензированный ипотечный брокер MortgageDepot. Помогаю русскоязычным получить ипотеку в США." />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>emailjs.init("e_6pO45yHLhya6wZd");</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -537,6 +539,14 @@
     }
   };
 
+  const guideLinks = {
+    guide1: 'https://marino4ke-code.github.io/marina.mortgage/guides/guide1.pdf',
+    guide2: 'https://marino4ke-code.github.io/marina.mortgage/guides/guide2.pdf',
+    guide3: 'https://marino4ke-code.github.io/marina.mortgage/guides/guide3.pdf'
+  };
+
+  let currentGuideId = 'guide1';
+
   const calcLabels = {
     ru: {
       monthlyPayment: 'Ежемесячный платёж', years: 'лет', downPayment: 'Первый взнос',
@@ -660,10 +670,19 @@
   }
 
   function openModal(id) {
+    currentGuideId = id;
     const g = guides[currentLang][id];
     document.getElementById('modal-title').textContent = g.title;
     document.getElementById('modal-sub').textContent = g.sub;
     document.getElementById('modal-overlay').classList.add('open');
+    // Attach phone formatter
+    setTimeout(function(){
+      const mp = document.getElementById('modal-phone');
+      if(mp){
+        mp.addEventListener('input', function(){ formatPhone(this); });
+        mp.addEventListener('focus', function(){ if(!this.value) this.value='+1 '; });
+      }
+    }, 100);
   }
 
   function resetModal() {
@@ -697,20 +716,52 @@
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   }
 
-  function submitModal() {
-    const name = document.getElementById('modal-name').value;
-    const email = document.getElementById('modal-email').value;
-    const phone = document.getElementById('modal-phone').value;
+  async function submitModal() {
+    const name = document.getElementById('modal-name').value.trim();
+    const email = document.getElementById('modal-email').value.trim();
+    const phone = document.getElementById('modal-phone').value.trim();
+
     if (!name) { alert(currentLang==='ru'?'Введите ваше имя':'Please enter your name'); return; }
-    if (!validateEmail(email)) { alert(currentLang==='ru'?'Введите правильный email':'Please enter a valid email'); return; }
     if (!validatePhone(phone)) { alert(currentLang==='ru'?'Введите правильный номер: +1 и 10 цифр':'Please enter a valid phone: +1 and 10 digits'); return; }
-    document.getElementById('modal-inner').innerHTML = `
-      <div style="text-align:center;padding:20px 0">
-        <div style="font-size:44px;margin-bottom:16px">✅</div>
-        <div style="font-size:19px;font-weight:700;margin-bottom:10px">${currentLang==='ru'?`Спасибо, ${name}!`:`Thank you, ${name}!`}</div>
-        <div style="font-size:13px;color:#777;line-height:1.6">${currentLang==='ru'?`Гайд отправлен на ${email}.<br>Проверьте папку Spam если не найдёте.`:`Guide sent to ${email}.<br>Check your Spam folder if you don't see it.`}</div>
-        <button onclick="closeModal()" style="margin-top:22px;background:var(--red);color:white;border:none;padding:10px 24px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">${currentLang==='ru'?'Закрыть':'Close'}</button>
-      </div>`;
+    if (!validateEmail(email)) { alert(currentLang==='ru'?'Введите правильный email':'Please enter a valid email'); return; }
+
+    const btn = document.querySelector('#modal-inner .calc-btn');
+    btn.textContent = currentLang==='ru' ? 'Отправляем...' : 'Sending...';
+    btn.disabled = true;
+
+    const guideName = guides[currentLang][currentGuideId].title;
+    const guideLink = guideLinks[currentGuideId];
+
+    try {
+      // Send notification to Marina
+      await emailjs.send('service_1gedwfo', 'template_xs8a5xl', {
+        guide_name: guideName,
+        user_name: name,
+        user_phone: phone,
+        user_email: email
+      });
+
+      // Send guide to client
+      await emailjs.send('service_1gedwfo', 'template_f9wj69v', {
+        guide_name: guideName,
+        guide_link: guideLink,
+        user_name: name,
+        user_email: email
+      });
+
+      // Show success
+      document.getElementById('modal-inner').innerHTML = `
+        <div style="text-align:center;padding:20px 0">
+          <div style="font-size:44px;margin-bottom:16px">✅</div>
+          <div style="font-size:19px;font-weight:700;margin-bottom:10px">${currentLang==='ru'?`Спасибо, ${name}!`:`Thank you, ${name}!`}</div>
+          <div style="font-size:13px;color:#777;line-height:1.6">${currentLang==='ru'?`Гайд отправлен на <b>${email}</b>.<br>Проверьте папку Spam если не найдёте.`:`Guide sent to <b>${email}</b>.<br>Check your Spam folder if you don't see it.`}</div>
+          <button onclick="closeModal()" style="margin-top:22px;background:var(--red);color:white;border:none;padding:10px 24px;border-radius:6px;font-size:13px;font-weight:600;cursor:pointer">${currentLang==='ru'?'Закрыть':'Close'}</button>
+        </div>`;
+    } catch(err) {
+      console.error('EmailJS error:', err);
+      btn.textContent = currentLang==='ru' ? 'Ошибка. Попробуйте снова.' : 'Error. Please try again.';
+      btn.disabled = false;
+    }
   }
 
   // PHONE FORMATTING
